@@ -1,0 +1,30 @@
+4. 
+
+У вас есть репозиторий с такой структурой:
+
+local:
+    master:
+        2 commits
+    new_feature:
+        1 commit
+
+origin (github):
+    master:
+        2 commits
+
+
+Вы находитесь на ветке master. Вам нужно:
+- перейти на ветку new_feature
+- создать новый файл hello.txt
+- добавить коммит с этим файлом
+- запушить результат в origin
+
+Как это сделать?
+
+git checkout new_feature
+touch hello.txt
+git add hello.txt
+git commit -m "added hello.txt"
+git push --set-upstream origin new_feature
+
+

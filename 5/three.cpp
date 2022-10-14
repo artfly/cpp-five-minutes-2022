@@ -46,6 +46,8 @@ class linked_list {
     node* next;
   };
 
+  node * head_;
+
   // TODO: iterator
 
 };

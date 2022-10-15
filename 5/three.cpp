@@ -4,7 +4,41 @@
 #include <iostream>
 
 class linked_list {
+ private:
+  struct node {
+    int data;
+    node* next;
+  };
+
  public:
+  class iterator {
+   public:
+    explicit iterator(node* node) : node_(node) {}
+    iterator(const iterator& other) = default;
+
+    int& operator*() { return node_->data; }
+
+    bool operator==(const iterator& other) const {
+      return this->node_ == other.node_;
+    }
+
+    bool operator!=(const iterator& other) const { return !(*this == other); }
+
+    iterator& operator++() {
+      node_ = node_->next;
+      return *this;
+    }
+
+    iterator operator++(int) {
+      iterator tmp(node_);
+      node_ = node_->next;
+      return tmp;
+    }
+
+   private:
+    node* node_;
+  };
+
   linked_list(const std::initializer_list<int>& initializer) {
     node* prev = nullptr;
     head_ = nullptr;
@@ -28,32 +62,22 @@ class linked_list {
     }
   }
 
- private:
-  class iterator;
+  iterator begin() { return iterator(head_); }
 
- public:
-  iterator begin() {
-    // TODO: return iterator
-  }
-
-  iterator end() {
-    // TODO: return iterator
-  }
+  iterator end() { return iterator(nullptr); }
 
  private:
-  struct node {
-    int data;
-    node* next;
-  };
-
-  node * head_;
-
-  // TODO: iterator
-
+  node* head_;
 };
 
 int main(int argc, char** argv) {
   linked_list list = {1, 2, 3};
+  linked_list::iterator it = list.begin();
+  linked_list::iterator end = list.end();
+  while (it != end) {
+    std::cout << (*it) << std::endl;
+    it++;
+  }
   for (int i : list) {
     std::cout << i << std::endl;
   }

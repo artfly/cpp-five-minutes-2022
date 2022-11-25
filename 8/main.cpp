@@ -24,9 +24,10 @@ template<typename T>
 class shared_ptr {
   public:
 
+    // creates new shared_ptr with the same underlying raw pointer, sets counter to 1
     shared_ptr(T * t = nullptr);
 
-    // creates new shared_ptr with the same underlying raw pointer, sets counter to 1
+    // creates shared_ptr with the same underlying raw pointer as 'other' has, increments counter
     shared_ptr(const shared_ptr & other);
 
     // decrements the counter for the old raw pointer, assigns the new one from 'other'

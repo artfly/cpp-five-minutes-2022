@@ -76,6 +76,7 @@ void test3() {
   A * a = new A();
   shared_ptr<A> s1(a);
   shared_ptr<A> s2(a);
+  // ~A!
   // Error: double free!
 }
 
@@ -132,12 +133,16 @@ void test8() {
   // Acopy!
   A copy(*s1);
   // ~A!
+  // ~A!
 }
 
 void test9() {
+  // A!
   A * a = new A();
   shared_ptr<A> s1(a);
+  // foo!
   s1->foo();
+  // ~A!
 }
 
 int main() {
